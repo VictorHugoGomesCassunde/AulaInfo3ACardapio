@@ -1,3 +1,4 @@
+import { useState } from "react";
 import "../src/globals.css";
 
 
@@ -32,18 +33,29 @@ export default function App() {
     return (
        <div className="bloco-principal">
         <div className="bloco-produtos">
+
+
             {listaProdutos.map((produto) =>
             <div key={produto.id}>
                 <img src={produto.imagem}/>
                 <p>{produto.item}</p>
-                <button onClick={()
+                <button onClick={() => 
+                adicionarProdutoPedido(produto)}>Quero</button>
+        </div>         
+ )   
+}
+<div className="bloco-pedidos">
+    <p>Meus Pedidos</p>
+    {
+        listaProdutos.map((produto) =>
+        <div key={produto.id}>
+            <p>{produto.item}</p>
 
-
-
-
-
-        </div>
-
-       </div>
-    );
+    
+    }
+</div>
+    
+</div>
+</div>
+        
 }
