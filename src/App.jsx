@@ -30,7 +30,19 @@ export default function App() {
     ]);
 
     return (
-       <div>
+       <div className="bloco-principal">
+        <div className="bloco-produtos">
+            {listaProdutos.map((produto) =>
+            <div key={produto.id}>
+                <img src={produto.imagem}/>
+                <p>{produto.item}</p>
+                <button onClick={()
+
+
+
+
+
+        </div>
 
        </div>
     );
