@@ -1,12 +1,11 @@
 import { useState } from "react";
 import "../src/globals.css";
 
-
 export default function App() {
-   const [listaProdutos, setProdutos] = useState([
+    const [listaProdutos, setProdutos] = useState([
         {
             id: 1,
-            item: "Hambúrguer",
+            item: "hamburger",
             imagem: "https://www.assai.com.br/sites/default/files/shutterstock_1806472312.jpg",
             preco: "R$ 25,99"
         },
@@ -30,32 +29,43 @@ export default function App() {
         },
     ]);
 
+    const [listaPedidos, setPedidos] = useState([]);
+
+    const adicionarProdutoPedido = (produto) => {
+        setPedidos([...listaPedidos, produto]);
+    };
+
     return (
-       <div className="bloco-principal">
-        <div className="bloco-produtos">
-
-
-            {listaProdutos.map((produto) =>
-            <div key={produto.id}>
-                <img src={produto.imagem}/>
-                <p>{produto.item}</p>
-                <button onClick={() => 
-                adicionarProdutoPedido(produto)}>Quero</button>
-        </div>         
- )   
-}
-<div className="bloco-pedidos">
-    <p>Meus Pedidos</p>
-    {
-        listaProdutos.map((produto) =>
-        <div key={produto.id}>
-            <p>{produto.item}</p>
-
-    
-    }
-</div>
-    
-</div>
-</div>
-        
+    <div className="bloco-principal">
+              <div className="bloco-produtos">
+     {listaProdutos.map((produto) => (
+                    <div key={produto.id}>
+                 <img src={produto.imagem} alt={produto.item} />
+                 <p>{produto.item}</p>
+                 <p>{produto.preco}</p>
+                     <button onClick={() => adicionarProdutoPedido(produto)}>Adicionar</button>
+         </div>
+    ))}
+       </div>
+    <div className="bloco-pedidos">
+         <p>Meus Pedidos</p>
+                   <table>
+             <thead>
+    <tr>
+          <th>Produto</th>
+          <th>Valor</th>
+                 </tr>
+             </thead>
+           <tbody>
+    {listaPedidos.map((produto) => (
+            <tr key={produto.id}>
+             <td>{produto.item}</td>
+                <td>{produto.preco}</td>
+            </tr>
+    ))}
+              </tbody>
+            </table>
+       </div>
+         </div>
+    );
 }
