@@ -34,6 +34,13 @@ export default function App() {
     const adicionarProdutoPedido = (produto) => {
         setPedidos([...listaPedidos, produto]);
     };
+console.table(listaPedidos);
+
+
+const removerItem = (id)=> {
+    let listaAux = listaPedidos.filter((pedidos)=> pedidos.id !== id);
+    setPedidos(listaAux)
+}
 
     return (
     <div className="bloco-principal">
@@ -52,18 +59,23 @@ export default function App() {
                    <table>
              <thead>
     <tr>
-          <th>Produto</th>
+          <th>Pedido</th>
           <th>Valor</th>
                  </tr>
              </thead>
            <tbody>
-    {listaPedidos.map((produto) => (
-            <tr key={produto.id}>
-             <td>{produto.item}</td>
-                <td>{produto.preco}</td>
+    {listaPedidos.map((pedido) => (
+            <tr key={pedido.id}>
+
+             <td>{pedido.item}</td>
+
+                <td>{pedido.preco}
+                <button onClick={() => removerItem(pedido.id)}>X</button>
+                </td>
             </tr>
     ))}
               </tbody>
+              
             </table>
        </div>
          </div>
