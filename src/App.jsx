@@ -39,20 +39,21 @@ console.table(listaPedidos);
 
 const removerItem = (id)=> {
     let remover = false;
-    let listaAux = listaPedidos.filter((pedidos)=> 
-  {
-    if(index == id){
-        if(remover == false)
-        remover == true;
+    let listaAux = listaPedidos.filter((pedidos)=> {
 
-        return null
-
-    }else{
+    if(remover == false){
+        if(pedidos.id !== id){
+            return pedidos
+        }else{
+            remover = true;
+            return null
+        }
+    } else{
         return pedidos
     }
-  }
-    );
-    setPedidos(listaAux)
+       
+ } );
+    setListaPedidos(listaAux)
 }
 
     return (
