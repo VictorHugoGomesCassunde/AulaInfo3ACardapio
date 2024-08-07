@@ -38,7 +38,20 @@ console.table(listaPedidos);
 
 
 const removerItem = (id)=> {
-    let listaAux = listaPedidos.filter((pedidos)=> pedidos.id !== id);
+    let remover = false;
+    let listaAux = listaPedidos.filter((pedidos)=> 
+  {
+    if(index == id){
+        if(remover == false)
+        remover == true;
+
+        return null
+
+    }else{
+        return pedidos
+    }
+  }
+    );
     setPedidos(listaAux)
 }
 
@@ -53,30 +66,34 @@ const removerItem = (id)=> {
                      <button onClick={() => adicionarProdutoPedido(produto)}>Adicionar</button>
          </div>
     ))}
-       </div>
+        </div>
     <div className="bloco-pedidos">
          <p>Meus Pedidos</p>
                    <table>
              <thead>
-    <tr>
+         <tr>
           <th>Pedido</th>
           <th>Valor</th>
-                 </tr>
+         </tr>
              </thead>
            <tbody>
-    {listaPedidos.map((pedido) => (
+
+    {listaPedidos.map((pedido,index) => (
+
             <tr key={pedido.id}>
 
              <td>{pedido.item}</td>
 
                 <td>{pedido.preco}
-                <button onClick={() => removerItem(pedido.id)}>X</button>
+                
+                <button onClick={() => removerItem(index)}>X</button>
+                
                 </td>
-            </tr>
+                </tr>
     ))}
-              </tbody>
+      </tbody>
               
-            </table>
+        </table>
        </div>
          </div>
     );
