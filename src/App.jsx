@@ -37,7 +37,7 @@ export default function App() {
 console.table(listaPedidos);
 
 
-const removerPedido = (id)=> {
+const removerItem = (id)=> {
     let remover = false;
     let listaAux = listaPedidos.filter((produto)=> {
 
@@ -64,7 +64,7 @@ const removerPedido = (id)=> {
                  <img src={produto.imagem} alt={produto.item} />
                  <p>{produto.item}</p>
                  <p>{produto.preco}</p>
-                     <button onClick={() => adicionarItemPedidos(produto)}>Adicionar</button>
+                     <button onClick={() => adicionarProdutoPedido(produto)}>Adicionar</button>
          </div>
     ))}
         </div>
