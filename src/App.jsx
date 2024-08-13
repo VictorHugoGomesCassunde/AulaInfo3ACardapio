@@ -31,9 +31,30 @@ export default function App() {
 
     const [listaPedidos, setPedidos] = useState([]);
 
-    const adicionarProdutoPedido = (produto) => {
-        setPedidos([...listaPedidos, produto]);
+    const adicionarItemPedidos = (objeto) => {
+        setItemPedidos([...listaPedidos, objeto]);
     };
+console.table(listaPedidos);
+
+
+const removerPedido = (id)=> {
+    let remover = false;
+    let listaAux = listaPedidos.filter((produto)=> {
+
+    if(remover == false){
+        if(produto.id !== id){
+            return produto
+        }else{
+            remover = true;
+            return null
+        }
+    } else{
+        return produto
+    }
+       
+ } );
+    setListaPedidos(listaAux)
+}
 
     return (
     <div className="bloco-principal">
@@ -43,28 +64,33 @@ export default function App() {
                  <img src={produto.imagem} alt={produto.item} />
                  <p>{produto.item}</p>
                  <p>{produto.preco}</p>
-                     <button onClick={() => adicionarProdutoPedido(produto)}>Adicionar</button>
+                     <button onClick={() => adicionarItemPedidos(produto)}>Adicionar</button>
          </div>
     ))}
-       </div>
+        </div>
     <div className="bloco-pedidos">
          <p>Meus Pedidos</p>
                    <table>
              <thead>
-    <tr>
-          <th>Produto</th>
+         <tr>
+          <th>Pedido</th>
           <th>Valor</th>
-                 </tr>
+         </tr>
              </thead>
            <tbody>
-    {listaPedidos.map((produto) => (
-            <tr key={produto.id}>
-             <td>{produto.item}</td>
-                <td>{produto.preco}</td>
-            </tr>
+
+           {listaPedidos.map((produto) => (
+      <tr key={produto.id}>
+         <td>{produto.item}</td>
+                <td>{produto.preco}
+                  <button onClick={() => removerPedido(produto.id)}>X</button>
+                
+                </td>
+                </tr>
     ))}
-              </tbody>
-            </table>
+      </tbody>
+              
+        </table>
        </div>
          </div>
     );
