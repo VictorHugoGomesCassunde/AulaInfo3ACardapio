@@ -5,7 +5,7 @@ export default function App() {
     const [listaProdutos, setProdutos] = useState([
         {
             id: 1,
-            item: "hamburger",
+            item: "Hambúrguer",
             imagem: "https://www.assai.com.br/sites/default/files/shutterstock_1806472312.jpg",
             preco: "R$ 25,99"
         },
@@ -31,67 +31,73 @@ export default function App() {
 
     const [listaPedidos, setPedidos] = useState([]);
 
-    const adicionarItemPedidos = (objeto) => {
-        setItemPedidos([...listaPedidos, objeto]);
+    const adicionarProdutoPedido = (produto) => {
+        setPedidos([...listaPedidos, produto]);
     };
 console.table(listaPedidos);
 
 
 const removerItem = (id)=> {
     let remover = false;
-    let listaAux = listaPedidos.filter((produto)=> {
+    let listaAux = listaPedidos.filter((pedido) =>
+           {
+            if(pedido.id == id){
+                return null
 
-    if(remover == false){
-        if(produto.id !== id){
-            return produto
-        }else{
-            remover = true;
-            return null
+            }
+            else{
+
+                return pedido
+    
+            }
+
+           }
+    );
+    setPedidos(listaAux);
         }
-    } else{
-        return produto
-    }
-       
- } );
-    setListaPedidos(listaAux)
-}
 
     return (
-    <div className="bloco-principal">
-              <div className="bloco-produtos">
-     {listaProdutos.map((produto) => (
-                    <div key={produto.id}>
-                 <img src={produto.imagem} alt={produto.item} />
-                 <p>{produto.item}</p>
-                 <p>{produto.preco}</p>
-                     <button onClick={() => adicionarProdutoPedido(produto)}>Adicionar</button>
-         </div>
-    ))}
-        </div>
-    <div className="bloco-pedidos">
-         <p>Meus Pedidos</p>
-                   <table>
-             <thead>
-         <tr>
-          <th>Pedido</th>
-          <th>Valor</th>
-         </tr>
-             </thead>
-           <tbody>
+     <div className="bloco-principal">
+     <div className="bloco-produtos">
+    {listaProdutos.map((produto) => (
+    <div key={produto.id}>
+        
+    <img src={produto.imagem} alt={produto.item} />
 
-           {listaPedidos.map((produto) => (
+    <p>{produto.item}</p>
+
+    <p>{produto.preco}</p>
+
+           <button onClick={() => adicionarProdutoPedido(produto)}>Adicionar</button>
+
+    </div>
+    ))}
+    </div>
+      <div className="bloco-pedidos">
+        <p>Meus Pedidos</p>
+        <table>
+
+           <tr>
+               <th>Produto</th>
+                    <th>Valor</th>
+    </tr>
+   
+
+    {listaPedidos.map((produto) => (
       <tr key={produto.id}>
          <td>{produto.item}</td>
                 <td>{produto.preco}
-                  <button onClick={() => removerPedido(produto.id)}>X</button>
-                
-                </td>
-                </tr>
-    ))}
-      </tbody>
-              
-        </table>
-       </div>
-         </div>
+                  <button onClick={() => removerItem(produto.id)}>X</button>
+                  </td>
+                  
+                    </tr>
+            
+                        )
+                        )}
+                    
+                    </table>
+            </div>
+        </div>
     );
+    
 }

@@ -9,7 +9,7 @@ body{
         min-height: 170vh;
         flex-direction: row;
         justify-content: space-between;
-        background-color: rgb(255, 181, 181);
+        background-color: rgb(145, 145, 145);
 }
 .bloco-produtos{
     width: 50%;
